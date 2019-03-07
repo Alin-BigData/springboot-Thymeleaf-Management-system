@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--指定mapper对应的dao-->
+<mapper namespace="com.wfl.sampling.dao.UserDao">
+    <!--查询所有列表-->
+    <select id="queryUsers" resultType="com.wfl.sampling.entity.User">
+        SELECT phone_num,user_name,sex,birthday,email,region,location,paper_status,
+        project_type,pay_status,create_time
+        FROM  tb_user
+        ORDER BY create_time DESC
+    </select>
+    <!--指定手机号查询-->
+    <select id="queryUserByPhoneNum" resultType="com.wfl.sampling.entity.User">
+		SELECT phone_num,user_name,sex,birthday,email,region,location,paper_status,
+        project_type,pay_status,create_time
+        FROM  tb_user
+		WHERE
+		phone_num = #{phoneNum} ORDER BY create_time DESC
+	</select>
+
+    <!--按人名模糊查询-->
+    <select id="queryUserByName" resultType="com.wfl.sampling.entity.User">
+		SELECT phone_num,user_name,sex,birthday,email,region,location,paper_status,
+        project_type,pay_status,create_time
+        FROM  tb_user
+		WHERE
+		user_name LIKE "%"#{userName}"%"
+	</select>
+    <!--useGeneratedKeys="true" 插入 成功 返回主键的值-->
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="phoneNum"
+            keyColumn="phone_num" parameterType="com.wfl.sampling.entity.User">
+		INSERT INTO
+		tb_user(phone_num,user_name,sex,birthday,email,region,location,paper_status,
+        project_type,pay_status,create_time)
+		VALUES
+		(#{phoneNum},#{userName},#{sex},#{birthday},#{email},#{region},#{location},#{paperStatus},
+		#{projectType},#{payStatus},#{createTime})
+	</insert>
+
+    <!--根据传入的phone_num来修改-->
+    <update id="updateUser" parameterType="com.wfl.sampling.entity.User">
+        update tb_user
+        <set>
+            /*当属性不为空的时候 就要做改变*/
+            <if test="sex != null">sex=#{sex},</if>
+            <if test="email != null">email=#{email},</if>
+            <if test="region != null">region=#{region},</if>
+            <if test="location != null">location=#{location},</if>
+            <if test="paperStatus != null">paper_status = #{paperStatus},</if>
+            <if test="projectType != null">project_type=#{projectType},</if>
+            <if test="payStatus != null">pay_status=#{payStatus},</if>
+        </set>
+        where phone_num=#{phoneNum}
+    </update>
+
+    <delete id="deleteUser">
+		DELETE FROM
+		tb_user
+		WHERE
+		phone_num = #{phoneNum}
+	</delete>
+</mapper>

@@ -1,0 +1,42 @@
+/* pages/confirm/confirm.wxss */
+
+.card_text {
+  width: 78%;
+  background: #fff;
+  border: solid 1rpx #fff;
+  margin-left: 11%;
+  margin-bottom: 10rpx;
+  border-radius: 30rpx;
+}
+
+.user_text {
+  width: 75%;
+  height: 90rpx;
+  line-height: 90rpx;
+  background: #fff;
+  padding: 0px 15rpx;
+  align-items: center;
+}
+
+.text_note {
+  width: 30%;
+  color: #5b5b5b;
+  font-size: 15px;
+}
+
+.text_detail {
+  width: 100%;
+  align-items: center;
+}
+
+.user_text text {
+  height: 32rpx;
+  line-height: 32rpx;
+  color: #959595;
+  font-size: 14px;
+  width: 70%;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="row border-bottom" th:fragment="headerTop">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+            <form role="search" class="navbar-form-custom" action="#">
+                <div class="form-group">
+                    <input placeholder="搜索..." class="form-control" name="top-search" id="top-search" type="text"/>
+                </div>
+            </form>
+        </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <span class="m-r-sm text-muted welcome-message">Welcome to aijiyin Admin.</span>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <i class="fa fa-cog"></i>设 置
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a th:href="@{'./editPassword'}">
+                                <i class="fa fa-pencil fa-fw"></i> 修 改 密 码
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                    </ul>
+                </li>
+                <li>
+                <li>
+                    <a href="./login">
+                        <i class="fa fa-sign-out"></i> 登 出
+                    </a>
+                </li>
+            </ul>
+        </nav>
+	</div>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>订单信息管理</title>
+
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+
+<link th:href="@{/css/plugins/iCheck/custom.css}" rel="stylesheet"/>
+<link th:href="@{/css/plugins/footable/footable.core.css}" rel="stylesheet"/>
+
+</head>
+
+<body>
+
+<div id="wrapper">
+	<nav class="navbar-default navbar-static-side" role="navigation" th:include="nav :: navigation"></nav>
+	<div id="page-wrapper" class="gray-bg">
+		<div class="border-bottom" th:include="header :: headerTop"></div>
+		<div class="row wrapper border-bottom white-bg page-heading" th:fragment="headerNav">
+			<div class="col-lg-10">
+				<h2>订单管理</h2>
+				<ol class="breadcrumb">
+					<li>
+						<a href="#">首页</a>
+					</li>
+					<li class="active">
+						<strong>订单管理</strong>
+					</li>
+				</ol>
+			</div>
+			<div class="col-lg-2">
+			</div>
+		</div>
+
+		<div class="wrapper wrapper-content animated fadeInRight">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="ibox float-e-margins">
+						<div class="ibox-title">
+							<h5>筛选&amp;查找</h5>
+							<div class="ibox-tools">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+							</div>
+						</div>
+						<div class="ibox-content" style="display: block;">
+							<form action="orderManage_0_0_0" class="form-inline">
+								<div class="row">
+									<div class="form-group">
+										<label for="startTime">填表日期范围：</label>
+										<input type="date" class="form-control" id="startTime" placeholder="开始时间"/>
+									</div>
+									<div class="form-group">
+										<label for="endTime">—</label>
+										<input type="date" class="form-control" id="endTime" placeholder="结束时间"/>
+									</div>
+									<div class="form-group">
+										<label for="phoneNum">&nbsp;&nbsp;手机号码：</label>
+										<input id="phoneNum" name="phoneNum" placeholder="手机号码" class="form-control"
+											   type="text" th:value="${order.phoneNum}"/>
+									</div>
+									<div class="form-group">
+										<label for="userName">&nbsp;&nbsp;姓名：</label>
+										<input id="userName" name="userName" placeholder="输入姓名" style="width: 150px" class="form-control"
+											   type="text" th:value="${order.userName}"/>
+									</div>
+									<div class="form-group">
+										<select name="paperStatus" id="paperStatus" class="form-control">
+											<option value="5" th:selected="${order.paperStatus==5}" selected>
+												--是否需要纸单--
+											</option>
+											<option value="1" th:selected="${order.paperStatus==1}">是</option>
+											<option value="0" th:selected="${order.paperStatus==0}">否</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<select name="payStatus" id="payStatus" class="form-control">
+											<option value="5" th:selected="${order.payStatus==5}" selected>
+												--请选择支付状态--
+											</option>
+											<option value="1" th:selected="${order.payStatus==1}">已支付</option>
+											<option value="0" th:selected="${order.payStatus==0}">未支付</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<select name="handleStatus" id="handleStatus" class="form-control">
+											<option value="5" th:selected="${order.handleStatus==5}" selected>
+												--请选择处理状态--
+											</option>
+											<option value="1" th:selected="${order.handleStatus==1}">待处理</option>
+											<option value="2" th:selected="${order.handleStatus==2}">处理中</option>
+											<option value="3" th:selected="${order.handleStatus==3}">已处理</option>
+											<option value="4" th:selected="${order.handleStatus==4}">已作废</option>
+										</select>
+									</div>
+									<div class="col-sm-offset-4 col-sm-3" style="margin-top: 15px;">
+										<button class="btn btn-primary btn-block" type="submit"><i
+												class="fa fa-search"></i>&nbsp;&nbsp;&nbsp;&nbsp;<strong>筛选</strong>
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="ibox float-e-margins">
+						<div class="ibox-title">
+							<h5>订单列表</h5>
+							<div class="ibox-tools">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+							</div>
+						</div>
+						<div class="ibox-content">
+							<div class="table-responsive">
+								<table class=" table table-bordered table-hover" data-page-size="10">
+									<thead>
+									<tr style="text-align: center">
+										<th style="width:15%;">订单号</th>
+										<th style="width:5%;">姓名</th>
+										<th style="width:10%;">手机号</th>
+										<th style="width:5%;">性别</th>
+										<th style="width:10%;">出生日期</th>
+										<th style="width:15%;">电子邮箱</th>
+										<th style="width:5%;">检测项目</th>
+										<th style="width:10%;">是否需要纸质报告</th>
+										<th style="width:5%;">支付状态</th>
+										<th style="width:10%;">处理状态</th>
+										<th style="width:5%;">详细</th>
+										<th style="width:5%;">去处理</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr th:each="order : ${orders}">
+										<td th:text="${order.orderId}">Onions</td>
+										<td th:text="${order.userName}">Onions</td>
+										<td th:text="${order.phoneNum}">Onions</td>
+										<td th:text="${order.sex}">Onions</td>
+										<td th:text="${#dates.format(order.birthday, 'yyyy-MM-dd')}">Onions</td>
+										<td th:text="${order.email}">Onions</td>
+										<td th:text="${order.projectType}">Onions</td>
+										<td th:text="${order.paperStatus}? '是' : '否'">Onions</td>
+										<td th:text="${order.payStatus}?'已支付':'未支付'">Onions</td>
+										<td th:text="${order.handleStatus}?'已处理':'未处理'">Onions</td>
+										<td>
+											&nbsp;&nbsp;
+											<a th:href="@{'./orderDetail?orderId='+${order.orderId}}" title="查看详细"><i
+													class="glyphicon glyphicon-search"></i></a>
+											&nbsp;&nbsp;
+										</td>
+										<td>
+											&nbsp;&nbsp;
+											<a th:href="@{'./orderHandle?orderId='+${order.orderId}}" title="处理"><i
+													class="glyphicon glyphicon-plus"></i></a>
+											&nbsp;&nbsp;
+										</td>
+									</tr>
+									</tbody>
+									<tfoot>
+									<tr>
+										<td colspan="12">
+											<ul id="pageHTML" class="pagination pull-right"></ul>
+										</td>
+									</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer" th:include="footer :: copyright"></div>
+	</div>
+</div>
+
+<!-- Mainly scripts -->
+<script th:src="@{/js/jquery-2.1.1.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+
+<!-- Peity -->
+<script th:src="@{/js/plugins/peity/jquery.peity.min.js}"></script>
+
+<!-- Custom and plugin javascript -->
+<script th:src="@{/js/inspinia.js}"></script>
+<script th:src="@{/js/plugins/pace/pace.min.js}"></script>
+
+<!-- iCheck -->
+<script th:src="@{/js/plugins/iCheck/icheck.min.js}"></script>
+
+<!-- Peity -->
+<script th:src="@{/js/demo/peity-demo.js}"></script>
+
+<!-- FooTable -->
+<script th:src="@{/js/plugins/footable/footable.all.min.js}"></script>
+
+<!-- common -->
+<script th:src="@{/js/common.js}"></script>
+
+<script th:inline="javascript">
+    var pageHTML = [[${pageHTML}]];
+    $(document).ready(function () {
+        $("#pageHTML").html(pageHTML);
+    });
+</script>
+
+</body>
+</html>

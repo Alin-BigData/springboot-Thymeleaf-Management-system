@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>MOXI</title>
+
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+
+<!-- Toastr style -->
+<link th:href="@{/css/plugins/toastr/toastr.min.css}" rel="stylesheet"/>
+
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+
+<!-- summernote style -->
+<link th:href="@{/css/plugins/summernote/summernote.css}" rel="stylesheet" />
+<link th:href="@{/css/plugins/summernote/summernote-bs3.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation" th:include="nav :: navigation"></nav>
+    <div id="page-wrapper" class="gray-bg">
+        <div class="border-bottom" th:include="header :: headerTop"></div>
+        <div class="row wrapper border-bottom white-bg page-heading" th:fragment="headerNav">
+            <div class="col-lg-10">
+                <h2>订单管理</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="#">首页</a>
+                    </li>
+                    <li>
+                        <a>订单管理</a>
+                    </li>
+                    <li class="active">
+                        <strong>订单详情</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-2">
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>订单详情</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table class=" table table-bordered table-hover" data-page-size="10">
+                            <thead>
+                            <tr style="text-align: center">
+                                <th style="width:10%;">订单号</th>
+                                <th style="width:5%;">姓名</th>
+                                <th style="width:7%;">手机号</th>
+                                <th style="width:5%;">短信验证码</th>
+                                <th style="width:3%;">性别</th>
+                                <th style="width:10%;">出生日期</th>
+                                <th style="width:10%;">地区</th>
+                                <th style="width:10%;">详细地址</th>
+                                <th style="width:10%;">电子邮箱</th>
+                                <th style="width:5%;">检测项目</th>
+                                <th style="width:5%;">是否需要纸质报告</th>
+                                <th style="width:5%;">支付状态</th>
+                                <th style="width:10%;">处理状态</th>
+                                <th style="width:5%;">处理时间</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="order:${orders}">
+                                <td th:text="${order.orderId}">Onions</td>
+                                <td th:text="${order.userName}">Onions</td>
+                                <td th:text="${order.phoneNum}">Onions</td>
+                                <td th:text="${order.smsNum}">Onions</td>
+                                <td th:text="${order.sex}">Onions</td>
+                                <td th:text="${#dates.format(order.birthday,'yyy-MM-dd')}">Onions</td>
+                                <td th:text="${order.region}">Onions</td>
+                                <td th:text="${order.location}">Onions</td>
+                                <td th:text="${order.email}">Onions</td>
+                                <td th:text="${order.projectType}">Onions</td>
+                                <td th:text="${order.paperStatus}?'是':'否'">Onions</td>
+                                <td th:text="${order.payStatus}?'已支付':'未支付'">Onions</td>
+                                <td th:text="${order.handleStatus}">Onions</td>
+                                <td th:text="${order.handleTime}">Onions</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer" th:include="footer :: copyright"></div>
+    </div>
+</div>
+
+<!-- Mainly scripts -->
+<script th:src="@{/js/jquery-2.1.1.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+
+<!-- Peity -->
+<script th:src="@{/js/plugins/peity/jquery.peity.min.js}"></script>
+
+<!-- Custom and plugin javascript -->
+<script th:src="@{/js/inspinia.js}"></script>
+<script th:src="@{/js/plugins/pace/pace.min.js}"></script>
+
+<!-- Toastr script -->
+<script th:src="@{/js/plugins/toastr/toastr.min.js}"></script>
+
+<!-- common -->
+<script th:src="@{/js/common.js}"></script>
+
+<!-- SUMMERNOTE -->
+<script th:src="@{/js/plugins/summernote/summernote.min.js}"></script>
+
+</body>
+
+</html>

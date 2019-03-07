@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--指定mapper对应的dao-->
+<mapper namespace="com.wfl.sampling.dao.OrderDao">
+
+    <!--查询所有列表
+     * 1、手机号
+     * 2、姓名
+     * 3、性别
+     * 4、出生日期
+     * 5、电子邮箱
+     * 6、检测项目
+     * 7、是否需要纸质报告
+     * 8、支付状态
+     * 9、处理状态
+    -->
+
+    <select id="queryAllOrder" resultType="com.wfl.sampling.entity.Order">
+        SELECT *
+        FROM tb_order ORDER BY create_time DESC,id ASC
+
+    </select>
+
+    <!--按条件查询列表-->
+    <select id="queryOrderByCondition" resultType="com.wfl.sampling.entity.Order"
+            parameterType="com.wfl.sampling.entity.Order">
+        SELECT order_id,user_name,sex,phone_num,birthday,email,project_type,paper_status,pay_status,handle_status
+        FROM tb_order
+        <where>
+            1=1
+            <if test="startTime !=null and endTime != null">
+                AND create_time <![CDATA[ >= ]]> #{startTime}
+                AND create_time <![CDATA[ <= ]]> #{endTime}
+            </if>
+            <if test="phoneNum !=null">
+                AND phone_num = #{phoneNum}
+            </if>
+            <if test="userName != null">
+                AND user_name LIKE CONCAT(CONCAT('%', #{userName}), '%')
+            </if>
+            <if test="handleStatus !=null and handleStatus != 5">
+                AND handleStatus = #{handleStatus}
+            </if>
+            <if test="payStatus !=null and payStatus != 5">
+                AND pay_status = #{payStatus}
+            </if>
+            <if test="paperStatus !=null and paperStatus != 5">
+                AND paper_status = #{paperStatus}
+            </if>
+        </where>
+        LIMIT #{start},#{end};
+    </select>
+
+    <!--按条件查询列表-->
+    <select id="queryOrderByConditionWithoutLimit" resultType="com.wfl.sampling.entity.Order"
+            parameterType="com.wfl.sampling.entity.Order">
+        SELECT order_id,user_name,sex,phone_num,birthday,email,project_type,paper_status,pay_status,handle_status
+        FROM tb_order
+        <where>
+            1=1
+            <if test="startTime !=null and endTime != null">
+                AND create_time <![CDATA[ >= ]]> #{startTime}
+                AND create_time <![CDATA[ <= ]]> #{endTime}
+            </if>
+            <if test="phoneNum !=null">
+                AND phone_num = #{phoneNum}
+            </if>
+            <if test="userName != null">
+                AND user_name LIKE CONCAT(CONCAT('%', #{userName}), '%')
+            </if>
+            <if test="handleStatus !=null and handleStatus != 5">
+                AND handleStatus = #{handleStatus}
+            </if>
+            <if test="payStatus !=null and payStatus != 5">
+                AND pay_status = #{payStatus}
+            </if>
+            <if test="paperStatus !=null and paperStatus != 5">
+                AND paper_status = #{paperStatus}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryOrderByOrderId" resultType="com.wfl.sampling.entity.Order"
+            parameterType="com.wfl.sampling.entity.Order">
+        SELECT *
+        FROM tb_order WHERE order_id = #{orderId} ORDER BY create_time DESC
+    </select>
+
+    <!--useGeneratedKeys="true" 插入 成功 返回主键的值-->
+    <insert id="insertOrder" useGeneratedKeys="true"
+            parameterType="com.wfl.sampling.entity.Order">
+		INSERT INTO
+		tb_order(order_id,phone_num,user_name,sex,birthday,email,region,location,paper_status,
+        project_type,pay_status,create_time,handle_time)
+		VALUES
+		(#{orderId},#{phoneNum},#{userName},#{sex},#{birthday},#{email},#{region},#{location},#{paperStatus},
+		#{projectType},#{payStatus},#{createTime},#{handleTime})
+	</insert>
+
+</mapper>

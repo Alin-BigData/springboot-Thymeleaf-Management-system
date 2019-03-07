@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<title>订单处理</title>
+
+	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+	<link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+
+	<!-- Toastr style -->
+	<link th:href="@{/css/plugins/toastr/toastr.min.css}" rel="stylesheet"/>
+
+	<link th:href="@{/css/style.css}" rel="stylesheet" />
+
+	<!-- summernote style -->
+	<link th:href="@{/css/plugins/summernote/summernote.css}" rel="stylesheet" />
+	<link th:href="@{/css/plugins/summernote/summernote-bs3.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+<div id="wrapper">
+	<nav class="navbar-default navbar-static-side" role="navigation" th:include="nav :: navigation"></nav>
+	<div id="page-wrapper" class="gray-bg">
+		<div class="border-bottom" th:include="header :: headerTop"></div>
+		<div class="row wrapper border-bottom white-bg page-heading" th:fragment="headerNav">
+			<div class="col-lg-10">
+				<h2>订单管理</h2>
+				<ol class="breadcrumb">
+					<li>
+						<a th:href="@{orderManage_0_0_0}">首页</a>
+					</li>
+					<li>
+						<a th:href="@{orderManage_0_0_0}">订单管理</a>
+					</li>
+					<li class="active">
+						<strong>订单处理</strong>
+					</li>
+				</ol>
+			</div>
+			<div class="col-lg-2">
+			</div>
+		</div>
+		<div class="col-lg-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>订单处理</h5>
+					<div class="ibox-tools">
+						<a class="collapse-link">
+							<i class="fa fa-chevron-up"></i>
+						</a>
+					</div>
+				</div>
+				<div class="ibox-content">
+					<form action="orderHandle" enctype="multipart/form-data">
+						<div class="table-responsive">
+							<table class=" table table-bordered table-hover" data-page-size="10">
+								<thead>
+								<tr style="text-align: center">
+									<th style="width:10%;">订单号</th>
+									<th style="width:5%;">姓名</th>
+									<th style="width:7%;">手机号</th>
+									<th style="width:8%;">处理状态</th>
+									<th style="width:30%;">处理备注</th>
+									<th style="width:30%;">报告上传</th>
+									<th style="width:10%;">提交</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr th:each="order : ${orders}">
+									<td th:text="${order.orderId}">Onions</td>
+									<td th:text="${order.userName}">Onions</td>
+									<td th:text="${order.phoneNum}">Onions</td>
+									<td>
+										<div class="form-group">
+											<select name="handleStatus" id="handleStatus" class="form-control">
+												<option value="0" th:selected="${order.handleStatus==0}" selected>待处理
+												</option>
+												<option value="1" th:selected="${order.handleStatus==1}">已处理</option>
+												<option value="2" th:selected="${order.handleStatus==2}">已作废</option>
+											</select>
+										</div>
+									</td>
+									<td>
+										<div class="form-group">
+											<textarea name="remark" placeholder="填写备注" rows="10" cols="30"></textarea>
+										</div>
+									</td>
+									<td>
+										<div class="form-group">
+											<input type="file" name="file" multiple="multiple" value="选择报告"/>
+										</div>
+									</td>
+									<td>
+										<button class="btn btn-primary btn-block" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;<strong>提交</strong>
+										</button>
+									</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<!-- Mainly scripts -->
+<script th:src="@{/js/jquery-2.1.1.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+
+<!-- Peity -->
+<script th:src="@{/js/plugins/peity/jquery.peity.min.js}"></script>
+
+<!-- Custom and plugin javascript -->
+<script th:src="@{/js/inspinia.js}"></script>
+<script th:src="@{/js/plugins/pace/pace.min.js}"></script>
+
+<!-- Toastr script -->
+<script th:src="@{/js/plugins/toastr/toastr.min.js}"></script>
+
+<!-- common -->
+<script th:src="@{/js/common.js}"></script>
+
+<!-- SUMMERNOTE -->
+<script th:src="@{/js/plugins/summernote/summernote.min.js}"></script>
+
+</body>
+
+</html>

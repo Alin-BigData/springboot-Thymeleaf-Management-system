@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--指定mapper对应的dao-->
+<mapper namespace="com.wfl.sampling.dao.AdminDao">
+    <!--验证账号密码--> <!--queryByAdmin insertAdmin updateAdmin-->
+    <select id="queryByAdmin" resultType="com.wfl.sampling.entity.Admin" parameterType="com.wfl.sampling.entity.User">
+        SELECT * FROM  admin WHERE userName = #{userName} AND password = #{password} AND state = 0
+    </select>
+
+    <!--查找用户是否已经存在-->
+    <select id="hasExisted" resultType="com.wfl.sampling.entity.Admin" parameterType="com.wfl.sampling.entity.User">
+        SELECT * FROM  admin WHERE userName = #{userName}
+    </select>
+
+    <!--useGeneratedKeys="true" 插入 成功 返回主键的值-->
+    <insert id="insertAdmin" useGeneratedKeys="true" parameterType="com.wfl.sampling.entity.Admin">
+		INSERT INTO
+		admin(userName,email,password,realName,age,phoneNumber,headPicture,addDate,state)
+		VALUES
+		(#{userName},#{email},#{password},#{realName},#{age},#{phoneNumber},#{headPicture},#{addDate},
+		#{state})
+	</insert>
+
+    <!--根据传入的id来修改-->
+    <update id="updateAdmin" parameterType="com.wfl.sampling.entity.Admin">
+        update admin
+        <set>
+            /*当属性不为空的时候 就要做改变*/
+            <if test="email != null">email=#{email},</if>
+            <if test="password != null">password=#{password},</if>
+            <if test="realName != null">realName=#{realName},</if>
+            <if test="age != null">age = #{age},</if>
+            <if test="phoneNumber != null">phoneNumber=#{phoneNumber},</if>
+            <if test="headPicture != null">headPicture=#{headPicture},</if>
+            <if test="updateDate != null">updateDate=#{updateDate},</if>
+        </set>
+        where userName=#{userName}
+    </update>
+</mapper>

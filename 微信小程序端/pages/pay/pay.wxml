@@ -1,0 +1,14 @@
+<!--pages/pay/pay.wxml-->
+<!-- 上线时，version 应改为 "release"，并确保插件所有者小程序已经发布 -->
+<!-- <functional-page-navigator
+  version="develop"
+  name="requestPayment"
+  args="{{ args }}"
+  bind:success="paymentSuccess"
+  bind:fail="paymentFailed"
+>
+  <button class="payment-button">支付 40.00 元</button>
+</functional-page-navigator> -->
+<view class='btn'>
+  <button class='submit_info' bindtap='btnClickToPay'>支付40.00元</button>
+</view>

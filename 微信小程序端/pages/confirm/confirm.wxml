@@ -1,0 +1,60 @@
+<!--pages/confirm/confirm.wxml-->
+<view>
+  <image mode="aspectFill" style="height:200rpx;width:100%;" src="/images/th.jpg"></image>
+</view>
+<view class='card_text flexCenter' style='margin-top:20rpx;'>
+  <view class="user_text" style='border-bottom:dashed 1rpx #028beb;'>
+    <view class="text_detail flexRow">
+      <view class="text_note">姓名:</view>
+      <text>{{userName}}</text>
+    </view>
+  </view>
+  <view class="user_text" style='border-bottom:dashed 1rpx #028beb;'>
+    <view class="text_detail flexRow">
+      <view class="text_note">性别:</view>
+      <text>{{sex}}</text>
+    </view>
+  </view>
+  <view class="user_text" style='border-bottom:dashed 1rpx #028beb;'>
+    <view class="text_detail flexRow">
+      <view class="text_note">出生日期:</view>
+      <text>{{birthday}}</text>
+    </view>
+  </view>
+  <view class="user_text" style='border-bottom:dashed 1rpx #028beb;'>
+    <view class="text_detail flexRow">
+      <view class="text_note">手机号码:</view>
+      <text>{{phoneNum}}</text>
+    </view>
+  </view>
+  <view class="user_text" style='border-bottom:dashed 1rpx #028beb;'>
+    <view class="text_detail flexRow">
+      <view class="text_note">所在地区:</view>
+      <text>{{region}}</text>
+    </view>
+  </view>
+    <view class="user_text" style='border-bottom:dashed 1rpx #028beb;'>
+    <view class="text_detail flexRow">
+      <view class="text_note">详细地址:</view>
+      <text>{{location}}</text>
+    </view>
+  </view>
+  <view class="user_text" style='border-bottom:dashed 1rpx #028beb;'>
+    <view class="text_detail flexRow">
+      <view class="text_note">电子邮箱:</view>
+      <text>{{email}}</text>
+    </view>
+  </view>
+  <view class="user_text">
+    <view class="text_detail flexRow">
+      <view class="text_note">检测项目:</view>
+      <text>{{pjIndex}}</text>
+    </view>
+  </view>
+</view>
+
+<view class='btn'>
+  <view class="submit_info" bindtap="backIndex">
+    完成
+  </view>
+</view>

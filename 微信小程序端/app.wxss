@@ -1,0 +1,112 @@
+/**app.wxss**/
+page{background: #cce8fb;}
+.flexCenter{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+}
+.flexRowBetween{
+	display:flex;
+	flex-direction:row;
+	justify-content:space-between;
+}
+.flexRow{
+	display:flex;
+	flex-direction:row;
+}
+
+/**外卡片式**/
+.card{
+  width: 96%;
+  background: #fff;
+  border:solid 1rpx #fff;
+  margin-left: 2%;
+  margin-bottom: 10rpx;
+  border-radius: 30rpx;
+}
+
+/**用户输入框**/
+.user_input{
+  width: 84%;
+	height:90rpx;
+	line-height:90rpx;
+  background: #fff;
+	/* border-bottom:solid 1rpx #e3e3e3; */
+	padding:0px 15rpx;
+	align-items:center;
+}
+.users_detail{
+	width:100%;
+	align-items:center;
+}
+.input_note{
+  width:23%;
+  color:#5b5b5b;
+	font-size:15px;
+}
+.user_input input,.user_input text{
+	height:32rpx;
+	line-height:32rpx;
+  color:#959595;
+	font-size:14px;
+	width:77%;
+}
+ 
+/**提交按钮**/
+.btn{
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+.submit_info{
+display: flex;
+justify-content: center;
+align-items:center;
+width:690rpx;
+height:88rpx;
+line-height:88rpx;
+text-align:center;
+font-size:24px;
+color:#fff;
+background: #028beb;
+/* background:linear-gradient(to right,rgba(72,222,223,1.00),rgba(42,154,225,1.00)); */
+border-radius:50rpx;
+margin:50rpx 0 50rpx;
+}
+
+/**提示文本**/
+.top-tips{
+  height: 90rpx;
+  color: #999;
+  font-size: 13px;
+  line-height: 90rpx;
+}
+
+/**小箭頭**/
+.arrow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.arrow::after {
+    content: "";
+    width: 15rpx;
+    height: 15rpx;
+    border-top: 3rpx solid #ccc;
+    border-right: 3rpx solid #ccc;
+    transform: rotate(45deg);
+}
+
+/**分割线**/
+.divider1 {
+    height: 20rpx;
+    background:#cce8fb;
+    /* background-color: #f1f1f1; */
+    box-shadow: 0 5rpx 5rpx rgba(0, 0, 0, 0.1) inset;
+}
+.divider2 {
+    height: 1rpx;
+    background-color: #e3e3e3;
+    border-bottom: dashed 1rpx #028beb ;
+}

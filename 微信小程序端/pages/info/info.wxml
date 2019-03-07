@@ -1,0 +1,132 @@
+<!--info.wxml-->
+<view>
+  <image mode="aspectFill" style="height:200rpx;width:100%;" src="/images/bg.jpg"></image>
+</view>
+
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <view class='card flexCenter'>
+    <view class="user_input" style='border-bottom:solid 1rpx #e3e3e3;'>
+      <view class="users_detail flexRowBetween">
+        <view class="input_note">您的姓名:</view>
+        <input placeholder="请输入" name="userName" value='{{userName}}' bindinput="bindNameChange"></input>
+      </view>
+    </view>
+
+    <view class="user_input" style='border-bottom:solid 1rpx #e3e3e3;'>
+      <view class="users_detail flexRowBetween arrow">
+        <view class="input_note">性别:</view>
+        <picker mode="selector" value="{{sexIndex}}" bindchange="bindGenderChange" range="{{sex}}" style="width:75%;">
+          <input placeholder="请选择" disabled="{{true}}" name="sex" value="{{sex[sexIndex]}}" style="width:100%;"></input>
+        </picker>
+      </view>
+    </view>
+    <!-- <view class='user_input' style='border-bottom:solid 1rpx #e3e3e3;'>
+    <view class="users_detail flexRow">
+      <view class="input_note" style="width:20%">性别:</view>
+      <radio-group class="radio-group" bindchange="maleRadioChange">
+        <label class="radio">
+          <radio value="male" checked="" /> 男
+        </label>
+        <label class="radio">
+          <radio value="remale" checked="" /> 女
+        </label>
+      </radio-group>
+    </view> -->
+    <!-- </view> -->
+
+    <view class="user_input ">
+      <view class="users_detail flexRowBetween arrow">
+        <view class="input_note">出生日期:</view>
+        <picker mode="date" value="{{birthday}}" start="1900-00-01" end="2020-12-30" bindchange="bindDateChange" style="width:75%;">
+          <input placeholder="请选择" disabled="{{true}}" name="birthday" value="{{birthday}}" style="width:100%;"></input>
+        </picker>
+      </view>
+    </view>
+  </view>
+
+
+  <view class='card flexCenter'>
+    <view class="user_input" style='border-bottom:solid 1rpx #e3e3e3;'>
+      <view class="users_detail flexRowBetween">
+        <view class="input_note">手机号码:</view>
+        <input placeholder="请输入" type="number" name="phoneNum" style="width:70%;" bindinput='bindPhoneChange' value='{{phoneNum}}' maxlength='11'></input>
+        <view class="address_right" style="width:7%;">
+          <text style='color:#b2b2b2;font-size:14px;'>+86</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="user_input" style='border-bottom:solid 1rpx #e3e3e3;'>
+      <view class="users_detail flexRowBetween">
+        <view class="input_note">验证码:</view>
+        <input type='text' type="number" name="smsNum" placeholder="请输入验证码" style="width:64%;" bindinput='bindSmsChange' value='{{smsNum}}' maxlength='4'>></input>
+        <view>
+          <view class='code-btn {{showSms?"on":""}}' bindtap='getSms'>{{smsText}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="user_input" style='border-bottom:solid 1rpx #e3e3e3;'>
+      <view class="users_detail flexRowBetween arrow">
+        <view class="input_note">所在地区:</view>
+        <picker mode="region" value="{{region}}" custom-item="{{customItem}}" bindchange="bindRegionChange" style="width:77%;position:relative;right:0rpx;align-items:center;">
+          <input placeholder="请选择" disabled="{{true}}" name="region" value="{{region}}" style="width:100%;"></input>
+        </picker>
+      </view>
+    </view>
+    <view class="user_input" style='border-bottom:solid 1rpx #e3e3e3;'>
+      <view class="users_detail flexRowBetween">
+        <view class="input_note">详细地址:</view>
+        <input placeholder="如街道，门牌号" name="location" value='{{location}}'bindinput="bindLocationChange"></input>
+      </view>
+    </view>
+
+    <view class="user_input">
+      <view class="users_detail flexRowBetween">
+        <view class="input_note">电子邮箱:</view>
+        <input placeholder="请输入" name="email" bindinput='bindEmailChange' value='{{email}}'></input>
+      </view>
+    </view>
+  </view>
+
+  <view class='card flexCenter'>
+    <view class="user_input" style='border-bottom:solid 1rpx #e3e3e3;'>
+      <view class="users_detail flexRowBetween arrow">
+        <view class="input_note">检测项目:</view>
+        <picker mode="selector" value="{{pjIndex}}" bindchange="bindProjectChange" range="{{projectType}}" style="width:75%;">
+          <input placeholder="请选择" disabled="{{true}}" name="projectType" value="{{pjIndex}}" style="width:100%;"></input>
+        </picker>
+      </view>
+    </view>
+    <!-- <view class="user_input">
+    <view class="users_detail flexRowBetween arrow">
+      <view class="top-tips" style='width:45%'>是否需要纸质报告:</view>
+      <picker mode="selector" class="" value="{{deIndex}}" bindchange="bindDemandChange" range="{{demand}}" style="width:75%;">
+        <input value="{{demand[0]}}" style="width:100%;"></input>
+      </picker>
+    </view>
+  </view> -->
+    <view class='user_input'>
+      <view class="users_detail" style='display:flex;'>
+        <view class="top-tips" style="width:40%">是否需要纸质报告:</view>
+        <radio-group class="radio-group" name="paperStatus" bindchange="bindDemandChange">
+          <label class="radio">
+            <radio value="1" checked="true" /> 是
+          </label>
+          <label class="radio">
+            <radio value="0" checked="" /> 否
+          </label>
+        </radio-group>
+      </view>
+    </view>
+  </view>
+
+
+  <view class='btn flexCenter'>
+    <!-- <view class="submit_info" bindtap="upConfirm">
+      提交信息
+    </view> -->
+    <button formType="submit" class="submit_info" style='margin-bottom:20rpx'>提交</button>
+    <button formType="reset" class="submit_info" style='margin-top:20rpx'>重置</button>
+  </view>
+</form>
